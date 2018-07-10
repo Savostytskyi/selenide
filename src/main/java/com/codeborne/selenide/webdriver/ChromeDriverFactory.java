@@ -73,6 +73,10 @@ class ChromeDriverFactory extends AbstractDriverFactory {
             currentChromeOptions.setExperimentalOption("prefs", prefs);
             break;
           }
+          case "useAutomationExtension": {
+            currentChromeOptions.setExperimentalOption(capability, Boolean.parseBoolean(value));
+            break;
+          }
           default:
             log.warning(capability + " is ignored." +
                     "Only so-called arguments (chromeoptions.args=<values comma separated>) " +
