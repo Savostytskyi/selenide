@@ -143,6 +143,8 @@ public class Configuration {
    *   <p>
    *   or use -Dchromeoptions.prefs=<comma-separated dictionary of key=value>
    *   <p>
+   *   or -Dchromeoptions.expOpt=<comma-separated dictionary of key=value>
+   *   <p>
    *
    * Value of "chrome.switches" parameter (in case of using Chrome driver).
    * Can be configured either programmatically or by system property,

@@ -50,7 +50,7 @@ class ChromeDriverFactory extends AbstractDriverFactory {
 
 
   /**
-   * This method only handles so-called "arguments" and "preferences"
+   * This method only handles so-called "arguments", "preferences" and "experimental options"
    * for ChromeOptions (there is also "Extensions" etc.)
    *
    * @param currentChromeOptions
@@ -73,14 +73,16 @@ class ChromeDriverFactory extends AbstractDriverFactory {
             currentChromeOptions.setExperimentalOption("prefs", prefs);
             break;
           }
-          case "useAutomationExtension": {
-            currentChromeOptions.setExperimentalOption(capability, Boolean.parseBoolean(value));
+          case "expOpt": {
+            Map<String, Object> experimentalOptions = parsePreferencesFromString(value);
+            experimentalOptions.forEach(currentChromeOptions::setExperimentalOption);
             break;
           }
           default:
             log.warning(capability + " is ignored." +
-                    "Only so-called arguments (chromeoptions.args=<values comma separated>) " +
-                    "and preferences (chromeoptions.prefs=<comma-separated dictionary of key=value> " +
+                    "Only so-called arguments (chromeoptions.args=<values comma separated>), " +
+                    "preferences (chromeoptions.prefs=<comma-separated dictionary of key=value> " +
+                    "and experimental options (chromeoptions.expOpt=<comma-separated dictionary of key=value> " +
                     "are supported for the chromeoptions at the moment");
             break;
         }
